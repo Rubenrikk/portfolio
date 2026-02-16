@@ -18,7 +18,7 @@
     "autoprefixer": "^10.4.22",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwindcss": "^4.0.0"
+    "tailwindcss": "^4.1.18"
   },
   "description": "Portfolio website van Ruben Rikkerink - Lerende Developer die met AI-tools moderne webapplicaties bouwt. Gebouwd met Astro, React en Tailwind CSS.",
   "main": "index.astro",
