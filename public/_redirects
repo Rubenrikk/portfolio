@@ -1,0 +1,4 @@
+# Redirect alle traffic van het Pages-subdomein naar het canonical domein
+https://rubenrikk-portfolio.pages.dev/*  https://rubenrikk.nl/:splat  301!
+
+

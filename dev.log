@@ -1,0 +1,412 @@
+
+> primer-blog@0.0.1 dev
+> astro dev --port 4321
+
+
+ astro  v4.6.1 ready in 2736 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+11:18:11 watching for file changes...
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+11:18:21 [200] / 7ms
+11:19:21 [watch] src/components/skills/components/skills-on-terminal/skillsOnTerminal.astro
+11:19:21 [200] / 3ms
+11:19:40 [watch] src/components/skills/components/skills-on-terminal/skillsOnTerminal.astro
+11:19:40 [200] / 2ms
+11:21:35 [200] / 4ms
+11:22:55 [watch] src/components/skills/components/skills-on-terminal/skillsOnTerminal.astro
+11:22:56 [WARN] [vite] warning: The "??" operator here will always return the left operand
+75 |    const categories = useMemo(() => CATEGORIES, []);
+76 |    const current: Category | undefined = useMemo(
+77 |      () => categories.find((c) => c.key === active ?? ''),
+   |                                                    ^
+78 |      [categories, active]
+79 |    );
+
+  Plugin: vite:esbuild
+  File: /Users/ruben/Documents/GitLab/portfolio-rubenrikk/src/components/TerminalSkills.tsx
+11:22:56 [200] / 21ms
+11:22:56 [WARN] [vite] warning: The "??" operator here will always return the left operand
+75 |    const categories = useMemo(() => CATEGORIES, []);
+76 |    const current: Category | undefined = useMemo(
+77 |      () => categories.find((c) => c.key === active ?? ''),
+   |                                                    ^
+78 |      [categories, active]
+79 |    );
+
+  Plugin: vite:esbuild
+  File: /Users/ruben/Documents/GitLab/portfolio-rubenrikk/src/components/TerminalSkills.tsx
+11:23:15 [watch] src/components/skills/components/skills-on-terminal/skillsOnTerminal.astro
+11:23:16 [200] / 6ms
+11:25:22 [watch] src/components/skills/components/terminal/Terminal.astro
+panic: html: bad parser state: originalIM was set twice [recovered]
+	panic: interface conversion: string is not error: missing method Error
+
+goroutine 31 [running]:
+main.Transform.func1.1.1.1()
+	./astro-wasm.go:305 +0x4
+panic({0x17500, 0x7bc68})
+	runtime/panic.go:884 +0x29
+github.com/withastro/compiler/internal.(*parser).setOriginalIM(...)
+	github.com/withastro/compiler/internal/parser.go:544
+github.com/withastro/compiler/internal.inBodyIM(0x5f38c0)
+	github.com/withastro/compiler/internal/parser.go:1103 +0x3db
+github.com/withastro/compiler/internal.(*parser).parseCurrentToken(0x5f38c0)
+	github.com/withastro/compiler/internal/parser.go:2972 +0x13
+github.com/withastro/compiler/internal.(*parser).parse(0x5f38c0)
+	github.com/withastro/compiler/internal/parser.go:2999 +0x3
+github.com/withastro/compiler/internal.ParseWithOptions({0x7c5c8, 0x42d700}, {0x439b58, 0x1, 0x1})
+	github.com/withastro/compiler/internal/parser.go:3063 +0x1c
+main.Transform.func1.1.1()
+	./astro-wasm.go:310 +0xc
+created by main.Transform.func1.1
+	./astro-wasm.go:301 +0x14
+exit code: 2
+11:25:22 [ERROR] [UnknownCompilerError] Cannot read properties of undefined (reading 'exports')
+  Hint:
+    This is almost always a problem with the Astro compiler, not your code. Please open an issue at https://astro.build/issues/compiler.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/unknown-compiler-error/
+  Stack trace:
+    at /Users/ruben/Documents/GitLab/portfolio-rubenrikk/src/components/skills/components/terminal/Terminal.astro
+    [...] See full stack trace in the browser, or rerun with --verbose.
+11:25:29 [watch] src/components/skills/components/skills-on-terminal/skillsOnTerminal.astro
+panic: html: bad parser state: originalIM was set twice [recovered]
+	panic: interface conversion: string is not error: missing method Error
+
+goroutine 10 [running]:
+main.Transform.func1.1.1.1()
+	./astro-wasm.go:305 +0x4
+panic({0x17500, 0x7bc68})
+	runtime/panic.go:884 +0x29
+github.com/withastro/compiler/internal.(*parser).setOriginalIM(...)
+	github.com/withastro/compiler/internal/parser.go:544
+github.com/withastro/compiler/internal.inBodyIM(0x47ad80)
+	github.com/withastro/compiler/internal/parser.go:1103 +0x3db
+github.com/withastro/compiler/internal.(*parser).parseCurrentToken(0x47ad80)
+	github.com/withastro/compiler/internal/parser.go:2972 +0x13
+github.com/withastro/compiler/internal.(*parser).parse(0x47ad80)
+	github.com/withastro/compiler/internal/parser.go:2999 +0x3
+github.com/withastro/compiler/internal.ParseWithOptions({0x7c5c8, 0x42c3c0}, {0x439b58, 0x1, 0x1})
+	github.com/withastro/compiler/internal/parser.go:3063 +0x1c
+main.Transform.func1.1.1()
+	./astro-wasm.go:310 +0xc
+created by main.Transform.func1.1
+	./astro-wasm.go:301 +0x14
+exit code: 2
+11:25:29 [ERROR] [UnknownCompilerError] Cannot read properties of undefined (reading 'exports')
+  Hint:
+    This is almost always a problem with the Astro compiler, not your code. Please open an issue at https://astro.build/issues/compiler.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/unknown-compiler-error/
+  Stack trace:
+    at syscall/js.valueNew (file:///Users/ruben/Documents/GitLab/portfolio-rubenrikk/node_modules/@astrojs/compiler/dist/chunk-GFDH6LQW.js:1:4524)
+    at wasm://wasm/01310ebe:wasm-function[1423]:0x148b5e
+    at wasm://wasm/01310ebe:wasm-function[1408]:0x144d55
+    at wasm://wasm/01310ebe:wasm-function[1037]:0xe478e
+    [...] See full stack trace in the browser, or rerun with --verbose.
+11:25:44 [watch] /src/components/TerminalSkills.tsx, /node_modules/@astrojs/tailwind/base.css
+panic: html: bad parser state: originalIM was set twice [recovered]
+	panic: interface conversion: string is not error: missing method Error
+
+goroutine 10 [running]:
+main.Transform.func1.1.1.1()
+	./astro-wasm.go:305 +0x4
+panic({0x17500, 0x7bc68})
+	runtime/panic.go:884 +0x29
+github.com/withastro/compiler/internal.(*parser).setOriginalIM(...)
+	github.com/withastro/compiler/internal/parser.go:544
+github.com/withastro/compiler/internal.inBodyIM(0x47ad80)
+	github.com/withastro/compiler/internal/parser.go:1103 +0x3db
+github.com/withastro/compiler/internal.(*parser).parseCurrentToken(0x47ad80)
+	github.com/withastro/compiler/internal/parser.go:2972 +0x13
+github.com/withastro/compiler/internal.(*parser).parse(0x47ad80)
+	github.com/withastro/compiler/internal/parser.go:2999 +0x3
+github.com/withastro/compiler/internal.ParseWithOptions({0x7c5c8, 0x42c3c0}, {0x439b58, 0x1, 0x1})
+	github.com/withastro/compiler/internal/parser.go:3063 +0x1c
+main.Transform.func1.1.1()
+	./astro-wasm.go:310 +0xc
+created by main.Transform.func1.1
+	./astro-wasm.go:301 +0x14
+exit code: 2
+11:25:44 [ERROR] [UnknownCompilerError] Cannot read properties of undefined (reading 'exports')
+  Hint:
+    This is almost always a problem with the Astro compiler, not your code. Please open an issue at https://astro.build/issues/compiler.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/unknown-compiler-error/
+  Stack trace:
+    at syscall/js.valueNew (file:///Users/ruben/Documents/GitLab/portfolio-rubenrikk/node_modules/@astrojs/compiler/dist/chunk-GFDH6LQW.js:1:4524)
+    at wasm://wasm/01310ebe:wasm-function[1423]:0x148b5e
+    at wasm://wasm/01310ebe:wasm-function[1408]:0x144d55
+    at wasm://wasm/01310ebe:wasm-function[1037]:0xe478e
+    [...] See full stack trace in the browser, or rerun with --verbose.
+11:25:44 [ERROR] [UnknownCompilerError] Cannot read properties of undefined (reading 'exports')
+  Hint:
+    This is almost always a problem with the Astro compiler, not your code. Please open an issue at https://astro.build/issues/compiler.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/unknown-compiler-error/
+  Stack trace:
+    at syscall/js.valueNew (file:///Users/ruben/Documents/GitLab/portfolio-rubenrikk/node_modules/@astrojs/compiler/dist/chunk-GFDH6LQW.js:1:4524)
+    at wasm://wasm/01310ebe:wasm-function[1423]:0x148b5e
+    at wasm://wasm/01310ebe:wasm-function[1408]:0x144d55
+    at wasm://wasm/01310ebe:wasm-function[1037]:0xe478e
+    [...] See full stack trace in the browser, or rerun with --verbose.
+11:25:44 [WARN] [vite] warning: The "??" operator here will always return the left operand
+77 |    const categories = useMemo(() => CATEGORIES, []);
+78 |    const current: Category | undefined = useMemo(
+79 |      () => categories.find((c) => c.key === active ?? ''),
+   |                                                    ^
+80 |      [categories, active]
+81 |    );
+
+  Plugin: vite:esbuild
+  File: /Users/ruben/Documents/GitLab/portfolio-rubenrikk/src/components/TerminalSkills.tsx
+11:26:09 [watch] /src/components/TerminalSkills.tsx, /node_modules/@astrojs/tailwind/base.css
+11:26:09 [watch] src/components/skills/components/skills-on-terminal/skillsOnTerminal.astro
+11:26:09 [watch] src/components/skills/components/terminal/Terminal.astro
+panic: html: bad parser state: originalIM was set twice [recovered]
+	panic: interface conversion: string is not error: missing method Error
+
+goroutine 10 [running]:
+main.Transform.func1.1.1.1()
+	./astro-wasm.go:305 +0x4
+panic({0x17500, 0x7bc68})
+	runtime/panic.go:884 +0x29
+github.com/withastro/compiler/internal.(*parser).setOriginalIM(...)
+	github.com/withastro/compiler/internal/parser.go:544
+github.com/withastro/compiler/internal.inBodyIM(0x47aea0)
+	github.com/withastro/compiler/internal/parser.go:1103 +0x3db
+github.com/withastro/compiler/internal.(*parser).parseCurrentToken(0x47aea0)
+	github.com/withastro/compiler/internal/parser.go:2972 +0x13
+github.com/withastro/compiler/internal.(*parser).parse(0x47aea0)
+	github.com/withastro/compiler/internal/parser.go:2999 +0x3
+github.com/withastro/compiler/internal.ParseWithOptions({0x7c5c8, 0x42c3c0}, {0x439b58, 0x1, 0x1})
+	github.com/withastro/compiler/internal/parser.go:3063 +0x1c
+main.Transform.func1.1.1()
+	./astro-wasm.go:310 +0xc
+created by main.Transform.func1.1
+	./astro-wasm.go:301 +0x14
+exit code: 2
+11:26:10 [WARN] [vite] warning: The "??" operator here will always return the left operand
+77 |    const categories = useMemo(() => CATEGORIES, []);
+78 |    const current: Category | undefined = useMemo(
+79 |      () => categories.find((c) => c.key === active ?? ''),
+   |                                                    ^
+80 |      [categories, active]
+81 |    );
+
+  Plugin: vite:esbuild
+  File: /Users/ruben/Documents/GitLab/portfolio-rubenrikk/src/components/TerminalSkills.tsx
+panic: html: bad parser state: originalIM was set twice [recovered]
+	panic: interface conversion: string is not error: missing method Error
+
+goroutine 7 [running]:
+main.Transform.func1.1.1.1()
+	./astro-wasm.go:305 +0x4
+panic({0x17500, 0x7bc68})
+	runtime/panic.go:884 +0x29
+github.com/withastro/compiler/internal.(*parser).setOriginalIM(...)
+	github.com/withastro/compiler/internal/parser.go:544
+github.com/withastro/compiler/internal.inBodyIM(0x47a480)
+	github.com/withastro/compiler/internal/parser.go:1103 +0x3db
+github.com/withastro/compiler/internal.(*parser).parseCurrentToken(0x47a480)
+	github.com/withastro/compiler/internal/parser.go:2972 +0x13
+github.com/withastro/compiler/internal.(*parser).parse(0x47a480)
+	github.com/withastro/compiler/internal/parser.go:2999 +0x3
+github.com/withastro/compiler/internal.ParseWithOptions({0x7c5c8, 0x42c100}, {0x439b58, 0x1, 0x1})
+	github.com/withastro/compiler/internal/parser.go:3063 +0x1c
+main.Transform.func1.1.1()
+	./astro-wasm.go:310 +0xc
+created by main.Transform.func1.1
+	./astro-wasm.go:301 +0x14
+exit code: 2
+11:26:10 [ERROR] [UnknownCompilerError] Cannot read properties of undefined (reading 'exports')
+  Hint:
+    This is almost always a problem with the Astro compiler, not your code. Please open an issue at https://astro.build/issues/compiler.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/unknown-compiler-error/
+  Stack trace:
+    at syscall/js.valueNew (file:///Users/ruben/Documents/GitLab/portfolio-rubenrikk/node_modules/@astrojs/compiler/dist/chunk-GFDH6LQW.js:1:4524)
+    at wasm://wasm/01310ebe:wasm-function[1423]:0x148b5e
+    at wasm://wasm/01310ebe:wasm-function[1038]:0xe47b1
+    [...] See full stack trace in the browser, or rerun with --verbose.
+11:26:10 [ERROR] [UnknownCompilerError] Cannot read properties of undefined (reading 'exports')
+  Hint:
+    This is almost always a problem with the Astro compiler, not your code. Please open an issue at https://astro.build/issues/compiler.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/unknown-compiler-error/
+  Stack trace:
+    at syscall/js.valueNew (file:///Users/ruben/Documents/GitLab/portfolio-rubenrikk/node_modules/@astrojs/compiler/dist/chunk-GFDH6LQW.js:1:4524)
+    at wasm://wasm/01310ebe:wasm-function[1423]:0x148b5e
+    at wasm://wasm/01310ebe:wasm-function[1038]:0xe47b1
+    [...] See full stack trace in the browser, or rerun with --verbose.
+11:26:27 [watch] /src/components/TerminalSkills.tsx, /node_modules/@astrojs/tailwind/base.css
+11:26:27 [watch] src/components/skills/components/terminal/Terminal.astro
+11:26:27 [watch] src/components/skills/components/skills-on-terminal/skillsOnTerminal.astro
+panic: html: bad parser state: originalIM was set twice [recovered]
+	panic: interface conversion: string is not error: missing method Error
+
+goroutine 10 [running]:
+main.Transform.func1.1.1.1()
+	./astro-wasm.go:305 +0x4
+panic({0x17500, 0x7bc68})
+	runtime/panic.go:884 +0x29
+github.com/withastro/compiler/internal.(*parser).setOriginalIM(...)
+	github.com/withastro/compiler/internal/parser.go:544
+github.com/withastro/compiler/internal.inBodyIM(0x47aea0)
+	github.com/withastro/compiler/internal/parser.go:1103 +0x3db
+github.com/withastro/compiler/internal.(*parser).parseCurrentToken(0x47aea0)
+	github.com/withastro/compiler/internal/parser.go:2972 +0x13
+github.com/withastro/compiler/internal.(*parser).parse(0x47aea0)
+	github.com/withastro/compiler/internal/parser.go:2999 +0x3
+github.com/withastro/compiler/internal.ParseWithOptions({0x7c5c8, 0x42c3c0}, {0x439b58, 0x1, 0x1})
+	github.com/withastro/compiler/internal/parser.go:3063 +0x1c
+main.Transform.func1.1.1()
+	./astro-wasm.go:310 +0xc
+created by main.Transform.func1.1
+	./astro-wasm.go:301 +0x14
+exit code: 2
+11:26:27 [ERROR] [UnknownCompilerError] Cannot read properties of undefined (reading 'exports')
+  Hint:
+    This is almost always a problem with the Astro compiler, not your code. Please open an issue at https://astro.build/issues/compiler.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/unknown-compiler-error/
+  Stack trace:
+    at syscall/js.valueNew (file:///Users/ruben/Documents/GitLab/portfolio-rubenrikk/node_modules/@astrojs/compiler/dist/chunk-GFDH6LQW.js:1:4524)
+    at wasm://wasm/01310ebe:wasm-function[1423]:0x148b5e
+    at wasm://wasm/01310ebe:wasm-function[1408]:0x144d55
+    at wasm://wasm/01310ebe:wasm-function[1037]:0xe478e
+    [...] See full stack trace in the browser, or rerun with --verbose.
+11:26:27 [ERROR] [UnknownCompilerError] Cannot read properties of undefined (reading 'exports')
+  Hint:
+    This is almost always a problem with the Astro compiler, not your code. Please open an issue at https://astro.build/issues/compiler.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/unknown-compiler-error/
+  Stack trace:
+    at syscall/js.valueNew (file:///Users/ruben/Documents/GitLab/portfolio-rubenrikk/node_modules/@astrojs/compiler/dist/chunk-GFDH6LQW.js:1:4524)
+    at wasm://wasm/01310ebe:wasm-function[1423]:0x148b5e
+    at wasm://wasm/01310ebe:wasm-function[1408]:0x144d55
+    at wasm://wasm/01310ebe:wasm-function[1037]:0xe478e
+    [...] See full stack trace in the browser, or rerun with --verbose.
+11:26:27 [WARN] [vite] warning: The "??" operator here will always return the left operand
+77 |    const categories = useMemo(() => CATEGORIES, []);
+78 |    const current: Category | undefined = useMemo(
+79 |      () => categories.find((c) => c.key === active ?? ''),
+   |                                                    ^
+80 |      [categories, active]
+81 |    );
+
+  Plugin: vite:esbuild
+  File: /Users/ruben/Documents/GitLab/portfolio-rubenrikk/src/components/TerminalSkills.tsx
+11:26:49 [ERROR] [UnknownCompilerError] Cannot read properties of undefined (reading 'exports')
+  Hint:
+    This is almost always a problem with the Astro compiler, not your code. Please open an issue at https://astro.build/issues/compiler.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/unknown-compiler-error/
+  Stack trace:
+    at syscall/js.valueNew (file:///Users/ruben/Documents/GitLab/portfolio-rubenrikk/node_modules/@astrojs/compiler/dist/chunk-GFDH6LQW.js:1:4524)
+    at wasm://wasm/01310ebe:wasm-function[1423]:0x148b5e
+    at wasm://wasm/01310ebe:wasm-function[1408]:0x144d55
+    at wasm://wasm/01310ebe:wasm-function[1037]:0xe478e
+    [...] See full stack trace in the browser, or rerun with --verbose.
+11:27:33 [watch] src/components/skills/components/terminal/Terminal.astro
+11:27:33 [200] / 4ms
+11:27:33 [WARN] [vite] warning: The "??" operator here will always return the left operand
+77 |    const categories = useMemo(() => CATEGORIES, []);
+78 |    const current: Category | undefined = useMemo(
+79 |      () => categories.find((c) => c.key === active ?? ''),
+   |                                                    ^
+80 |      [categories, active]
+81 |    );
+
+  Plugin: vite:esbuild
+  File: /Users/ruben/Documents/GitLab/portfolio-rubenrikk/src/components/TerminalSkills.tsx
+11:27:47 [200] / 8ms
+11:27:50 [watch] src/components/skills/components/terminal/Terminal.astro
+11:27:50 [200] / 4ms
+11:31:03 [watch] /src/components/TerminalSkills.tsx, /node_modules/@astrojs/tailwind/base.css
+11:31:03 [WARN] [vite] warning: The "??" operator here will always return the left operand
+86 |    const categories = useMemo(() => CATEGORIES, []);
+87 |    const current: Category | undefined = useMemo(
+88 |      () => categories.find((c) => c.key === active ?? ''),
+   |                                                    ^
+89 |      [categories, active]
+90 |    );
+
+  Plugin: vite:esbuild
+  File: /Users/ruben/Documents/GitLab/portfolio-rubenrikk/src/components/TerminalSkills.tsx
+11:31:25 [watch] /src/components/TerminalSkills.tsx, /node_modules/@astrojs/tailwind/base.css
+11:31:25 [WARN] [vite] warning: The "??" operator here will always return the left operand
+86 |    const categories = useMemo(() => CATEGORIES, []);
+87 |    const current: Category | undefined = useMemo(
+88 |      () => categories.find((c) => c.key === active ?? ''),
+   |                                                    ^
+89 |      [categories, active]
+90 |    );
+
+  Plugin: vite:esbuild
+  File: /Users/ruben/Documents/GitLab/portfolio-rubenrikk/src/components/TerminalSkills.tsx
+11:38:50 [watch] /src/components/TerminalSkills.tsx, /node_modules/@astrojs/tailwind/base.css
+11:38:50 [WARN] [vite] warning: The "??" operator here will always return the left operand
+87 |    const categories = useMemo(() => CATEGORIES, []);
+88 |    const current: Category | undefined = useMemo(
+89 |      () => categories.find((c) => c.key === active ?? ''),
+   |                                                    ^
+90 |      [categories, active]
+91 |    );
+
+  Plugin: vite:esbuild
+  File: /Users/ruben/Documents/GitLab/portfolio-rubenrikk/src/components/TerminalSkills.tsx
+11:39:07 [watch] /src/components/TerminalSkills.tsx, /node_modules/@astrojs/tailwind/base.css
+11:39:07 [WARN] [vite] warning: The "??" operator here will always return the left operand
+87 |    const categories = useMemo(() => CATEGORIES, []);
+88 |    const current: Category | undefined = useMemo(
+89 |      () => categories.find((c) => c.key === active ?? ''),
+   |                                                    ^
+90 |      [categories, active]
+91 |    );
+
+  Plugin: vite:esbuild
+  File: /Users/ruben/Documents/GitLab/portfolio-rubenrikk/src/components/TerminalSkills.tsx
+11:49:20 [watch] /src/components/TerminalSkills.tsx, /node_modules/@astrojs/tailwind/base.css
+11:49:20 [WARN] [vite] warning: The "??" operator here will always return the left operand
+104|    const categories = useMemo(() => CATEGORIES, []);
+105|    const current: Category | undefined = useMemo(
+106|      () => categories.find((c) => c.key === active ?? ''),
+   |                                                    ^
+107|      [categories, active]
+108|    );
+
+  Plugin: vite:esbuild
+  File: /Users/ruben/Documents/GitLab/portfolio-rubenrikk/src/components/TerminalSkills.tsx
+11:49:43 [watch] /src/components/TerminalSkills.tsx, /node_modules/@astrojs/tailwind/base.css
+11:49:43 [WARN] [vite] warning: The "??" operator here will always return the left operand
+104|    const categories = useMemo(() => CATEGORIES, []);
+105|    const current: Category | undefined = useMemo(
+106|      () => categories.find((c) => c.key === active ?? ''),
+   |                                                    ^
+107|      [categories, active]
+108|    );
+
+  Plugin: vite:esbuild
+  File: /Users/ruben/Documents/GitLab/portfolio-rubenrikk/src/components/TerminalSkills.tsx
+16:33:13 [watch] /node_modules/@astrojs/tailwind/base.css, /src/components/TerminalSkills.tsx
+16:33:44 [watch] /node_modules/@astrojs/tailwind/base.css, /src/components/TerminalSkills.tsx
+17:43:41 [WARN] [vite] warning: The "??" operator here will always return the left operand
+104|    const categories = useMemo(() => CATEGORIES, []);
+105|    const current: Category | undefined = useMemo(
+106|      () => categories.find((c) => c.key === active ?? ''),
+   |                                                    ^
+107|      [categories, active]
+108|    );
+
+  Plugin: vite:esbuild
+  File: /Users/ruben/Documents/GitLab/portfolio-rubenrikk/src/components/TerminalSkills.tsx
+17:43:41 [200] / 4ms
+17:43:42 [200] / 2ms
+17:44:04 [200] / 4ms
+17:44:20 [200] / 3ms

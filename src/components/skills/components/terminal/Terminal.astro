@@ -1,0 +1,23 @@
+---
+import terminal from './terminal.module.css';
+const { nombre, showPrompt = true } = Astro.props;
+---
+
+<div class={terminal.terminal}>
+	<div class={terminal.header}>
+		<div class={terminal.close}>✕</div>
+		<div class={terminal.minimize}>—</div>
+		<div class={terminal.maximize}>⇿</div>
+	</div>
+	<div class={terminal.body}>
+		{ showPrompt && (
+			<div class={terminal.user__line}>
+				<span class={terminal.user__name}>{nombre}@root: </span>
+				<span class={terminal.separator}>~</span><span> &#36; printskills</span>
+			</div>
+		) }
+		<div class="content">
+			<slot />
+		</div>
+	</div>
+</div>

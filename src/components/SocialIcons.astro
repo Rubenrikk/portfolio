@@ -1,0 +1,69 @@
+---
+const {width, height} = Astro.props;
+const socialLinks = [
+	{
+		title: 'Facebook',
+		icon: 'mdi:facebook',
+		href: 'https://www.facebook.com/rubenrikkerink',
+
+	},
+	{
+		title: 'Instagram',
+		icon: 'mdi:instagram',
+		href: 'https://www.instagram.com/rubenrikk/',
+
+	},
+	{
+		title: 'LinkedIn',
+		icon: 'simple-icons:linkedin',
+		href: 'https://www.linkedin.com/in/ruben-rikkerink-5b55bb228/',
+
+	},
+];
+---
+
+<div class="icons__container">
+    {
+        socialLinks.map((data) => (
+            <a
+                href={data.href}
+                target="_blank"
+                rel="nofollow noreferrer noopener"
+            >
+                <iconify-icon
+					class=`skill__icon ${data.title}`
+                    icon={data.icon}
+                    width={width}
+                    height={height}
+                />
+            </a>
+        ))
+    }
+</div>
+
+<style>
+	.icons__container {
+		display: flex;
+    width: 29.6rem;
+    /* padding: 1.3rem 4rem; */
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2rem;
+}
+.skill__icon{
+	color:var(--primary-90);
+}
+
+	.LinkedIn:hover{
+		color: #0e76a8;
+	}
+	.Instagram:hover{
+	color: #E1306C;
+	}
+	.Facebook:hover{
+		color: #1877F2;
+	}
+
+
+
+</style>

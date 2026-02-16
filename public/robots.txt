@@ -1,0 +1,8 @@
+# Robots.txt voor Cloudflare Pages
+# Voeg hieronder een Sitemap-regel toe zodra je (custom) domein definitief is, bijv.:
+# Sitemap: https://rubenrikk.nl/sitemap.xml
+
+User-agent: *
+Allow: /
+
+

@@ -1,0 +1,4 @@
+pages_build_output_dir = "dist"
+
+[vars]
+# Je kunt hier niet-gevoelige defaults zetten; secrets via Pages dashboard
