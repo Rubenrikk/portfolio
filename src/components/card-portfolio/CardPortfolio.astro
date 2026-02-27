@@ -6,6 +6,7 @@ const {
 	imgSrc,
 	skills,
 	prodURL,
+	githubURL,
 	averageBrightness,
 } = Astro.props;
 ---
@@ -41,6 +42,14 @@ const {
 						{(<iconify-icon icon="quill:link-out" />)}
 					</span>
 				</a>
+				{githubURL && (
+					<a href={githubURL} target="_blank" rel="noopener noreferrer">
+						<span>
+							GitHub
+							{(<iconify-icon icon="mdi:github" />)}
+						</span>
+					</a>
+				)}
 			</div>
 		</div>
 	</div>
