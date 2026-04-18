@@ -20,6 +20,26 @@ Configure branch protection on `main` to require these checks:
 - `CI Quality Gate Baseline / dependency-audit`
 - `CI Quality Gate Baseline / secret-scan`
 
+> **DO NOT RENAME.** These check names are derived from `name: CI Quality Gate Baseline` in `.github/workflows/ci-quality-gate.yml` and the `name:` field of each reusable workflow's job. Renaming the caller workflow, its `name:` value, or any job name will silently break branch protection everywhere the baseline is consumed, because the required-check strings above will stop matching. Treat these names as a branch-protection contract; coordinate any change via [SPO-20](/SPO/issues/SPO-20).
+
+## Secret scanning: gitleaks licensing
+
+The baseline invokes the upstream `gitleaks` CLI directly from the reusable workflow rather than using `gitleaks/gitleaks-action@v2`. Rationale:
+
+- The `gitleaks-action@v2` wrapper requires a paid `GITLEAKS_LICENSE` environment variable for organisation-owned repositories (including `Sportvereniging-H-G-V/*`). Without it, runs fail immediately on org repos.
+- The upstream gitleaks CLI itself is MIT-licensed and free for any use.
+- Invoking the binary directly keeps the baseline free of paid-license dependencies and avoids per-org secret provisioning.
+
+The reusable workflow pins a specific gitleaks release (see `.github/workflows/reusable-secret-scan.yml`). Bumping that version is an explicit, reviewed change. SARIF upload is intentionally not wired in the baseline; see the permissions contract section below.
+
+## Workflow permissions contract
+
+Reusable workflows in GitHub Actions can never expand the permissions granted by the caller — any token scope the reusable requests beyond what the caller allows is silently dropped. To avoid a false sense of elevated access, the baseline enforces:
+
+- `ci-quality-gate.yml` (caller) grants `permissions: contents: read` only.
+- Every reusable workflow it calls declares exactly the same `permissions: contents: read` block. No reusable workflow declares `security-events: write` in the baseline.
+- When SARIF upload is wired, it will ship as a separate, opt-in reusable variant (for example `reusable-secret-scan-sarif.yml`) that declares the elevated grant, and the caller workflow (or an overlay caller) will grant `security-events: write` explicitly. Do **not** add `security-events: write` to the existing reusable workflows without also updating the caller.
+
 ## Cache and concurrency strategy
 
 - All Node-based workflows use `actions/setup-node` with `cache: npm` and `cache-dependency-path: package-lock.json`.
