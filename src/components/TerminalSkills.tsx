@@ -22,7 +22,6 @@ function useTypewriter(text: string, deps: React.DependencyList, speed = 18) {
       }
     }, speed);
     return () => clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
   return { output, done } as const;
 }
@@ -30,12 +29,11 @@ function useTypewriter(text: string, deps: React.DependencyList, speed = 18) {
 export default function TerminalSkills() {
   const [mode, setMode] = useState<Mode>('home');
   const [active, setActive] = useState<string | null>(null);
-  const [clearing, setClearing] = useState(false);
+  const [, setClearing] = useState(false);
   const [commandOverride, setCommandOverride] = useState<string | null>(null);
   const nextActionRef = useRef<(() => void) | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const promptBase = 'Rubenrikk@root: ~$ ';
   const { output: typed, done: typedDone } = useTypewriter(
     commandOverride
       ? `${commandOverride}`
@@ -321,5 +319,3 @@ export default function TerminalSkills() {
     </div>
   );
 }
-
-

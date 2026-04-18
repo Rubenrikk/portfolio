@@ -9,7 +9,7 @@ function extractImageData(img, ctx) {
 		ctx.drawImage(img, 0, 0);
 		const imageData = ctx.getImageData(0, 0, img.width, img.height);
 		return imageData.data;
-	} catch (error) {
+	} catch {
 		return null;
 	}
 }

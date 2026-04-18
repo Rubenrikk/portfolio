@@ -52,6 +52,14 @@ Reusable workflows in GitHub Actions can never expand the permissions granted by
 2. If the author is blocked for more than 30 minutes, escalate to the repository code owner.
 3. If workflow infrastructure itself is broken (runner/action outage, shared workflow failure), escalate to the CTO as CI baseline owner via [SPO-20](/SPO/issues/SPO-20).
 
+## Portfolio pilot: enforce-shape → substantive gate
+
+This repository (`Rubenrikk/portfolio`) adopted the baseline while **`lint` and `test` were placeholders** (`npm run lint` absent; `npm test` echoed “No tests yet”). That was intentional: branch protection could enforce workflow *shape* first without blocking on real static analysis or tests.
+
+**Substantive gate (landed 2026-04-18):** `npm run lint` now runs **ESLint** (flat config, `eslint-plugin-astro` + `typescript-eslint`) plus **`astro check`**. `npm test` runs **Vitest** with at least one smoke test (`tests/smoke.test.ts`). The required checks `CI Quality Gate Baseline / lint` and `… / test` therefore fail on real regressions, not only on missing scripts.
+
+Follow-up: [SPO-32](/SPO/issues/SPO-32).
+
 ## Rollout guide for remaining repositories
 
 1. Copy the reusable workflow files and caller workflow into the target repository.
