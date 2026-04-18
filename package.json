@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "echo \"No tests yet\""
+    "lint": "eslint . && astro check",
+    "test": "vitest run"
   },
   "dependencies": {
     "@astrojs/react": "^4.0.0",
@@ -45,5 +46,14 @@
   "bugs": {
     "url": "https://gitlab.rubenrikk.nl/Rubenrikk/portfolio-rubenrikk/-/issues"
   },
-  "homepage": "https://gitlab.rubenrikk.nl/Rubenrikk/portfolio-rubenrikk"
+  "homepage": "https://gitlab.rubenrikk.nl/Rubenrikk/portfolio-rubenrikk",
+  "devDependencies": {
+    "@astrojs/check": "^0.9.8",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.2.1",
+    "eslint-plugin-astro": "^1.7.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.58.2",
+    "vitest": "^4.1.4"
+  }
 }
