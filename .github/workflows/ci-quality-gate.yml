@@ -1,0 +1,33 @@
+name: CI Quality Gate Baseline
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ci-quality-gate-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    uses: ./.github/workflows/reusable-lint.yml
+    with:
+      lint-command: npm run lint --if-present
+
+  test:
+    uses: ./.github/workflows/reusable-test.yml
+    with:
+      test-command: npm test
+
+  dependency-audit:
+    uses: ./.github/workflows/reusable-dependency-audit.yml
+    with:
+      audit-level: critical
+
+  secret-scan:
+    uses: ./.github/workflows/reusable-secret-scan.yml
