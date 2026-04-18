@@ -6,7 +6,8 @@ on:
       test-command:
         description: Command used to run tests
         required: false
-        default: npm test -- --ci
+        # Vitest rejects `--ci`; use `CI=true` in the job env if a runner needs explicit CI mode.
+        default: npm test
         type: string
 
 permissions:
