@@ -8,12 +8,14 @@ name: CI Quality Gate Baseline
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
   push:
     branches:
       - main
+  workflow_dispatch:
 
 concurrency:
-  group: ci-quality-gate-${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -22,13 +24,9 @@ permissions:
 jobs:
   lint:
     uses: ./.github/workflows/reusable-lint.yml
-    with:
-      lint-command: npm run lint --if-present
 
   test:
     uses: ./.github/workflows/reusable-test.yml
-    with:
-      test-command: npm test
 
   dependency-audit:
     uses: ./.github/workflows/reusable-dependency-audit.yml

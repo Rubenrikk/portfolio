@@ -42,15 +42,26 @@ Reusable workflows in GitHub Actions can never expand the permissions granted by
 
 ## Cache and concurrency strategy
 
-- All Node-based workflows use `actions/setup-node` with `cache: npm` and `cache-dependency-path: package-lock.json`.
+- All Node-based workflows use `actions/setup-node` with `node-version-file: .nvmrc` (pin **Node 20** in the repo root), `cache: npm`, and `cache-dependency-path: package-lock.json`.
 - The caller workflow uses `concurrency` with `cancel-in-progress: true` to prevent stacked duplicate runs on active PR branches.
 - The pilot uses `audit-level: critical` to keep the gate enforceable while existing high-severity advisories are remediated in follow-up work.
+
+## Audit level transition (`critical` → `high`)
+
+| Milestone | Target |
+| --------- | ------ |
+| **Now** | Caller passes `audit-level: critical` (temporary). |
+| **Goal** | Align caller with the reusable default `high`. |
+| **Deadline** | Before **Wave 4 portfolio hardening** lands; if Wave 4 is not scheduled by **2026-06-01**, treat that date as the hard deadline and escalate slippage to the CEO via [SPO-20](/SPO/issues/SPO-20). |
+
+When the deadline hits, drop the `with.audit-level` override in `ci-quality-gate.yml` so the reusable default (`high`) applies, and re-run the gate on a throwaway PR before tightening org-wide.
 
 ## Failure ownership and on-call path
 
 1. The pull request author owns the first triage/fix for any failed required check.
 2. If the author is blocked for more than 30 minutes, escalate to the repository code owner.
 3. If workflow infrastructure itself is broken (runner/action outage, shared workflow failure), escalate to the CTO as CI baseline owner via [SPO-20](/SPO/issues/SPO-20).
+4. If the CTO is offline and infra is still blocked after a reasonable window, the **board user** on duty is the fallback contact (same routing key: [SPO-20](/SPO/issues/SPO-20)).
 
 ## Portfolio pilot: enforce-shape → substantive gate
 
@@ -79,8 +90,35 @@ They are **separate** GitHub Actions workflows with **no `needs:` edge** between
 
 ## Rollout guide for remaining repositories
 
-1. Copy the reusable workflow files and caller workflow into the target repository.
+1. Copy the reusable workflow files, caller workflow, and **`.nvmrc`** into the target repository.
 2. Update the caller workflow commands if the repo uses non-Node tooling.
 3. Open a PR and verify all four checks run and pass.
-4. Set branch protection required checks exactly to the four standard names above.
+4. **Branch protection (REST example).** Enable protection on `main` with **required status checks** exactly matching the four strings above, **require branches to be up to date before merging** (`strict` required checks / “Require status checks to pass before merging” + strict), and **enforce for administrators** unless you have a documented break-glass policy.
+
+   Minimal shape (adapt IDs/contexts to the checks GitHub lists for *your* repo — names must match what Actions reports):
+
+   ```bash
+   gh api --method PUT "repos/{owner}/{repo}/branches/main/protection" \
+     -f "required_status_checks[strict]=true" \
+     -f "enforce_admins=true" \
+     -f "required_linear_history=true" \
+     -f "required_conversation_resolution=true" \
+     -F "required_pull_request_reviews[dismiss_stale_reviews]=true" \
+     -F "required_pull_request_reviews[required_approving_review_count]=1" \
+     -f "required_signatures=false" \
+     -f "restrictions=null" \
+     -f "required_status_checks[checks][][context]=CI Quality Gate Baseline / lint" \
+     -f "required_status_checks[checks][][context]=CI Quality Gate Baseline / test" \
+     -f "required_status_checks[checks][][context]=CI Quality Gate Baseline / dependency-audit" \
+     -f "required_status_checks[checks][][context]=CI Quality Gate Baseline / secret-scan"
+   ```
+
+   For GitHub Actions checks, include each check’s `app_id` (usually **15368** for `github-actions`) if the API rejects `null` app IDs — mirror whatever the “Required checks” picker shows after one green run.
+
+   If `GET repos/{owner}/{repo}/branches/main/protection` returns **404**, protection is not enabled yet; the call above creates it.
+
 5. Document any temporary exceptions with owner and expiry date before enabling enforcement.
+
+## Baseline rollback (branch protection)
+
+If the gate blocks merges during rollout: **remove the four baseline checks from `main` branch protection** (or delete the protection rule), then **revert the workflow PR** on `main`. No database or tenant data migration is involved.

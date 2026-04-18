@@ -3,11 +3,6 @@ name: Reusable Test
 on:
   workflow_call:
     inputs:
-      node-version:
-        description: Node.js version for test jobs
-        required: false
-        default: '20'
-        type: string
       test-command:
         description: Command used to run tests
         required: false
@@ -30,7 +25,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ inputs.node-version }}
+          node-version-file: .nvmrc
           cache: npm
           cache-dependency-path: package-lock.json
 
