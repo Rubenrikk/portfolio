@@ -60,6 +60,23 @@ This repository (`Rubenrikk/portfolio`) adopted the baseline while **`lint` and 
 
 Follow-up: [SPO-32](/SPO/issues/SPO-32).
 
+## Production path: baseline vs Cloudflare Pages deploy
+
+This repo runs **two** workflows on `main` pushes and on pull requests targeting `main`:
+
+| Workflow | File | Role |
+| -------- | ---- | ---- |
+| CI Quality Gate Baseline | `.github/workflows/ci-quality-gate.yml` | Required checks ([SPO-20](/SPO/issues/SPO-20)); must stay green before merge under [SPO-19](/SPO/issues/SPO-19) branch protection. |
+| Deploy to Cloudflare Pages | `.github/workflows/deploy.yml` | `npm ci`, `npm run build`, publish `dist/` to Pages. |
+
+They are **separate** GitHub Actions workflows with **no `needs:` edge** between them. That keeps the branch-protection contract stable (check names unchanged) and avoids coupling deploy tokens to the reusable-workflow graph.
+
+**Operational reliance:** `main` should only move via PR with the four required checks passing. That is the primary guarantee that production-bound commits were gated.
+
+**Residual risk:** An admin bypass or a protection misconfiguration could still publish from `deploy.yml` without the gate. **Owner:** repository admins; **mitigation:** keep rulesets/branch protection enforced on `main`, avoid direct pushes except documented break-glass, and run `npm run lint`, `npm test`, and `npm run build` locally before any emergency push.
+
+**Rollback:** Revert on `main` and allow a new deploy run, or roll back to a prior deployment in the Cloudflare Pages UI.
+
 ## Rollout guide for remaining repositories
 
 1. Copy the reusable workflow files and caller workflow into the target repository.
