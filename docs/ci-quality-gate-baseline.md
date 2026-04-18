@@ -40,6 +40,46 @@ Reusable workflows in GitHub Actions can never expand the permissions granted by
 - Every reusable workflow it calls declares exactly the same `permissions: contents: read` block. No reusable workflow declares `security-events: write` in the baseline.
 - When SARIF upload is wired, it will ship as a separate, opt-in reusable variant (for example `reusable-secret-scan-sarif.yml`) that declares the elevated grant, and the caller workflow (or an overlay caller) will grant `security-events: write` explicitly. Do **not** add `security-events: write` to the existing reusable workflows without also updating the caller.
 
+## Automation credentials: `gh`, OAuth, and workflow merges
+
+Branch protection and `gh api` calls only need `repo` (and related read scopes) on the token. **Merging a pull request that modifies `.github/workflows/**` is different:** GitHub refuses the merge unless the credential can update workflow files.
+
+Typical error when the token lacks that grant:
+
+> `refusing to allow an OAuth App to create or update workflow .github/workflows/<file>.yml without workflow scope`
+
+### Local developers (`gh` on a workstation)
+
+1. Refresh the GitHub host token with the extra scope:
+
+   ```bash
+   gh auth refresh -h github.com -s workflow
+   ```
+
+2. Confirm:
+
+   ```bash
+   gh auth status
+   ```
+
+   The listed token scopes must include **`workflow`** before you rely on `gh pr merge` for workflow-changing PRs.
+
+Classic PATs need the **`workflow`** scope. Fine-grained PATs need **Repository permissions → Workflows: Read and write** on every repository where you merge such PRs.
+
+### Paperclip agents (CTO / automation shells)
+
+Default **`gh auth login`** / OAuth-app flows often omit `workflow` for safety. For autonomous merges of baseline rollout PRs (see [SPO-43](/SPO/issues/SPO-43)), use one of:
+
+1. **Fine-grained PAT** with **Workflows: Read and write** on the target repos (e.g. `Rubenrikk/portfolio` and org repos in the [SPO-20](/SPO/issues/SPO-20) wave), stored as a Paperclip secret / agent credential and exported as **`GH_TOKEN`** (or equivalent) in the adapter environment so `gh` picks it up.
+2. **GitHub App** installed on those repos with **`Actions: Workflows`** / workflow write permission, using installation tokens for automation (heavier setup; scales better org-wide).
+3. **Fallback:** board merges workflow PRs manually when tokens cannot be granted this permission — document the owner and avoid blocking rollouts on agent-only merges.
+
+Until agents use (1) or (2), treat **workflow-touching PRs** as **human-merge** in runbooks.
+
+### Rollout commands and workflow PRs
+
+The `gh api … branches/main/protection` example below only configures protection. If you **merge** the rollout PR with `gh pr merge` and that PR edits workflow files, the **merge** step requires the `workflow` grant above — not only `repo`.
+
 ## Cache and concurrency strategy
 
 - All Node-based workflows use `actions/setup-node` with `node-version-file: .nvmrc` (pin **Node 20** in the repo root), `cache: npm`, and `cache-dependency-path: package-lock.json`.
