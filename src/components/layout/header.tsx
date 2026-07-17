@@ -16,7 +16,6 @@ import useScroll from '@/hooks/use-scroll';
 import Link from '@/components/navigation/link';
 import ThemeSwitcher from '@/components/general/theme-switcher';
 import IconButton from '@/components/general/icon-button';
-import DownloadCV from '@/components/general/download-cv';
 import Typography from '@/components/general/typography';
 
 const Logo = () => (
@@ -59,7 +58,6 @@ const Header = () => {
           <div className="h-6 w-0.5 bg-gray-100"></div>
           <div className="flex items-center gap-4">
             <ThemeSwitcher />
-            <DownloadCV />
           </div>
         </div>
 
@@ -102,7 +100,6 @@ const Header = () => {
                 <Typography>Wissel thema</Typography>
                 <ThemeSwitcher />
               </div>
-              <DownloadCV />
             </div>
           </DrawerContent>
         </Drawer>
