@@ -1,6 +1,6 @@
 import Script from 'next/script';
 import { Inter } from 'next/font/google';
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 
 import './globals.css';
 import Header from '@/components/layout/header';
@@ -26,10 +26,6 @@ export const metadata: Metadata = {
     'Hengelo',
   ],
   creator: 'Ruben Rikkerink',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
   openGraph: {
     type: 'website',
     url,
@@ -42,6 +38,13 @@ export const metadata: Metadata = {
     shortcut: '/favicon-16x16.png',
     apple: '/apple-touch-icon.png',
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
+  ],
 };
 
 const googleAnalyticsId = process.env.GOOGLE_ANALYTICS_ID;
